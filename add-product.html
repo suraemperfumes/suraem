@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة منتج جديد | Add Product - صُريم للعطور</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <!-- Ambient Glass Background Orbs -->
+    <div class="ambient-glow orb-1"></div>
+    <div class="ambient-glow orb-2"></div>
+
+    <div class="admin-page-wrapper">
+
+        <!-- Top Navigation -->
+        <header class="admin-top-nav">
+            <a href="admin.html" class="logo">
+                <h1>صُريم <span>للعطور</span></h1>
+            </a>
+            <div class="nav-right-actions">
+                <a href="admin.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-right"></i> العودة للوحة الإدارة (Admin Dashboard)
+                </a>
+            </div>
+        </header>
+
+        <!-- Form Main Container -->
+        <main class="form-page-container">
+            <div class="form-card">
+                <div class="form-card-header">
+                    <h2><i class="fas fa-plus-circle"></i> Add Product (إضافة منتج جديد)</h2>
+                    <p>أدخل بيانات المنتج الجديد لإضافته تلقائياً في المتجر الرئيسي</p>
+                </div>
+
+                <form id="add-product-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prod-name">اسم المنتج (Product Name) *</label>
+                            <input type="text" id="prod-name" required placeholder="مثال: عطر الفخامة">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-en-name">الاسم بالإنجليزية (English Name)</label>
+                            <input type="text" id="prod-en-name" placeholder="مثال: Luxury Perfume">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prod-category">القسم (Category) *</label>
+                            <select id="prod-category" required>
+                                <option value="men">عطور رجالية (Men)</option>
+                                <option value="women">عطور نسائية (Women)</option>
+                                <option value="oud">بخور وعود (Oud)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-price">السعر بالريال (Price) *</label>
+                            <input type="number" id="prod-price" required min="0" step="100" placeholder="مثال: 15000">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod-size">الحجم (Size)</label>
+                            <input type="text" id="prod-size" placeholder="مثال: 50ml أو وقية" value="50ml">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prod-img-file">صورة المنتج (Upload Product Image) *</label>
+                        <input type="file" id="prod-img-file" accept="image/jpeg,image/jpg,image/png,image/webp" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prod-desc">الوصف (Description) *</label>
+                        <textarea id="prod-desc" rows="4" required placeholder="أدخل وصف تفصيلي ومكونات المنتج..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>معاينة الصورة (Image Preview)</label>
+                        <div class="image-preview-container">
+                            <img id="img-preview" src="images/mens_perfume.png" alt="معاينة" onerror="this.onerror=null; this.src='images/mens_perfume.png';">
+                        </div>
+                    </div>
+
+                    <div class="form-actions-row">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Product (حفظ المنتج)
+                        </button>
+                        <a href="admin.html" class="btn btn-outline">
+                            <i class="fas fa-times"></i> Cancel (إلغاء)
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="admin-footer">
+            <p>&copy; 2026 متجر صُريم للعطور - لوحة الإدارة (Admin Dashboard)</p>
+        </footer>
+
+    </div>
+
+    <!-- Script -->
+    <script src="add-product.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker Registered:', reg.scope))
+                    .catch(err => console.error('Service Worker Registration Failed:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>

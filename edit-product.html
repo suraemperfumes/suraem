@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل المنتج | Edit Product - صُريم للعطور</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <!-- Ambient Glass Background Orbs -->
+    <div class="ambient-glow orb-1"></div>
+    <div class="ambient-glow orb-2"></div>
+
+    <div class="admin-page-wrapper">
+
+        <!-- Top Navigation -->
+        <header class="admin-top-nav">
+            <a href="admin.html" class="logo">
+                <h1>صُريم <span>للعطور</span></h1>
+            </a>
+            <div class="nav-right-actions">
+                <a href="admin.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-right"></i> العودة للوحة الإدارة (Admin Dashboard)
+                </a>
+            </div>
+        </header>
+
+        <!-- Form Main Container -->
+        <main class="form-page-container">
+            <div class="form-card">
+                <div class="form-card-header">
+                    <h2><i class="fas fa-edit"></i> Edit Product (تعديل بيانات المنتج)</h2>
+                    <p>قم بتحديث بيانات المنتج المحدد مسبقاً ثم انقر حفظ التغييرات</p>
+                </div>
+
+                <form id="edit-product-form">
+                    <input type="hidden" id="edit-prod-id">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-prod-name">اسم المنتج (Product Name) *</label>
+                            <input type="text" id="edit-prod-name" required placeholder="اسم المنتج">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-prod-en-name">الاسم بالإنجليزية (English Name)</label>
+                            <input type="text" id="edit-prod-en-name" placeholder="English Name">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-prod-category">القسم (Category) *</label>
+                            <select id="edit-prod-category" required>
+                                <option value="men">عطور رجالية (Men)</option>
+                                <option value="women">عطور نسائية (Women)</option>
+                                <option value="oud">بخور وعود (Oud)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-prod-price">السعر بالريال (Price) *</label>
+                            <input type="number" id="edit-prod-price" required min="0" step="100" placeholder="السعر">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-prod-size">الحجم (Size)</label>
+                            <input type="text" id="edit-prod-size" placeholder="الحجم">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-prod-img-file">تغيير صورة المنتج (Upload New Image)</label>
+                        <input type="file" id="edit-prod-img-file" accept="image/jpeg,image/jpg,image/png,image/webp">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-prod-desc">الوصف (Description) *</label>
+                        <textarea id="edit-prod-desc" rows="4" required placeholder="وصف المنتج..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>معاينة الصورة (Image Preview)</label>
+                        <div class="image-preview-container">
+                            <img id="edit-img-preview" src="images/mens_perfume.png" alt="معاينة الصورة">
+                        </div>
+                    </div>
+
+                    <div class="form-actions-row">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes (حفظ التغييرات)
+                        </button>
+                        <button type="button" id="delete-btn" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Delete Product (حذف المنتج)
+                        </button>
+                        <a href="admin.html" class="btn btn-outline">
+                            <i class="fas fa-times"></i> Cancel (إلغاء)
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="admin-footer">
+            <p>&copy; 2026 متجر صُريم للعطور - لوحة الإدارة (Admin Dashboard)</p>
+        </footer>
+
+    </div>
+
+    <!-- Script -->
+    <script src="edit-product.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker Registered:', reg.scope))
+                    .catch(err => console.error('Service Worker Registration Failed:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>

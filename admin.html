@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الإدارة | Admin Dashboard - صُريم للعطور</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <!-- Ambient Glass Background Orbs -->
+    <div class="ambient-glow orb-1"></div>
+    <div class="ambient-glow orb-2"></div>
+
+    <div class="admin-page-wrapper">
+        
+        <!-- Top Navbar -->
+        <header class="admin-top-nav">
+            <a href="index.html" class="logo">
+                <h1>صُريم <span>للعطور</span></h1>
+            </a>
+            <div class="nav-right-actions" id="top-nav-actions">
+                <a href="index.html" class="btn btn-outline">
+                    <i class="fas fa-store"></i> العودة للموقع الرئيسي (Back to Website)
+                </a>
+                <button id="logout-btn" class="btn btn-logout hidden">
+                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج (Logout)
+                </button>
+            </div>
+        </header>
+
+        <!-- ================= LOGIN SECTION ================= -->
+        <main id="login-section" class="login-screen-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="login-icon-box">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h2>تسجيل دخول لوحة الإدارة</h2>
+                    <p>أدخل بيانات الاعتماد للوصول لنظام التحكم بالمنتجات</p>
+                </div>
+
+                <form id="admin-login-form">
+                    <div id="login-error-msg" class="login-error-alert hidden">
+                        <i class="fas fa-exclamation-triangle"></i> اسم المستخدم أو كلمة المرور غير صحيحة
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> اسم المستخدم (Username)</label>
+                        <input type="text" id="username" required placeholder="أدخل اسم المستخدم" autocomplete="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> كلمة المرور (Password)</label>
+                        <input type="password" id="password" required placeholder="أدخل كلمة المرور" autocomplete="current-password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </button>
+                </form>
+            </div>
+        </main>
+
+        <!-- ================= ADMIN DASHBOARD SECTION ================= -->
+        <main id="dashboard-section" class="admin-dashboard-container hidden">
+            <!-- Header Panel -->
+            <div class="dashboard-header-panel">
+                <div class="dashboard-title">
+                    <h2><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h2>
+                    <p>إدارة منتجات متجر صُريم للعطور (إضافة، تعديل، حذف)</p>
+                </div>
+                <div>
+                    <a href="add-product.html" class="btn btn-primary">
+                        <i class="fas fa-plus-circle"></i> Add Product (إضافة منتج)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Statistics Summary -->
+            <div class="stats-summary-grid">
+                <div class="stat-box">
+                    <div class="stat-icon-wrapper"><i class="fas fa-boxes"></i></div>
+                    <div class="stat-details">
+                        <span class="stat-number" id="stat-total-products">0</span>
+                        <span class="stat-label">عدد المنتجات الحالية</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon-wrapper"><i class="fas fa-mars"></i></div>
+                    <div class="stat-details">
+                        <span class="stat-number" id="stat-men-products">0</span>
+                        <span class="stat-label">عطور رجالية</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon-wrapper"><i class="fas fa-venus"></i></div>
+                    <div class="stat-details">
+                        <span class="stat-number" id="stat-women-products">0</span>
+                        <span class="stat-label">عطور نسائية</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon-wrapper"><i class="fas fa-smoke"></i></div>
+                    <div class="stat-details">
+                        <span class="stat-number" id="stat-oud-products">0</span>
+                        <span class="stat-label">بخور وعود</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toolbar & Search -->
+            <div class="admin-toolbar-row">
+                <div class="search-filter-group">
+                    <div class="search-box-admin">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="admin-search-input" placeholder="ابحث عن منتج بالاسم...">
+                    </div>
+                    <select id="admin-category-filter" class="category-filter-select">
+                        <option value="all">جميع الأقسام</option>
+                        <option value="men">عطور رجالية</option>
+                        <option value="women">عطور نسائية</option>
+                        <option value="oud">بخور وعود</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Products Table List -->
+            <div class="products-table-wrapper">
+                <table class="admin-products-table">
+                    <thead>
+                        <tr>
+                            <th>الصورة (Image)</th>
+                            <th>اسم المنتج (Product Name)</th>
+                            <th>القسم (Category)</th>
+                            <th>السعر (Price)</th>
+                            <th>الحجم (Size)</th>
+                            <th>الوصف (Description)</th>
+                            <th>الإجراءات (Actions)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <!-- Loaded dynamically by admin.js -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="admin-footer">
+            <p>&copy; 2026 متجر صُريم للعطور - لوحة الإدارة (Admin Dashboard)</p>
+        </footer>
+
+    </div>
+
+    <!-- Script -->
+    <script src="admin.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker Registered:', reg.scope))
+                    .catch(err => console.error('Service Worker Registration Failed:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>

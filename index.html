@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صُريم للعطور | Suraem Perfumes</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Ambient Glass Background Orbs -->
+    <div class="ambient-glow orb-1"></div>
+    <div class="ambient-glow orb-2"></div>
+    <div class="ambient-glow orb-3"></div>
+
+    <!-- Loading Overlay for WhatsApp Redirect -->
+    <div id="loader" class="loader-overlay hidden">
+        <div class="spinner"></div>
+        <p>جاري تحويلك للواتساب...</p>
+    </div>
+
+    <!-- Navigation Drawer Overlay -->
+    <div id="nav-drawer-overlay" class="drawer-overlay hidden"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand-group">
+                <div class="hamburger" id="hamburger-toggle" title="القائمة">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <a href="#" class="logo" id="nav-logo">
+                    <h1>صُريم <span>للعطور</span></h1>
+                </a>
+            </div>
+
+            <ul class="nav-links" id="main-nav-links">
+                <li><a href="#home" data-target="home" class="nav-link scroll-link active"><i class="fas fa-home nav-icon"></i> الرئيسية</a></li>
+                <li><a href="#men" data-target="men" class="nav-link scroll-link"><i class="fas fa-mars nav-icon"></i> عطور رجالية</a></li>
+                <li><a href="#women" data-target="women" class="nav-link scroll-link"><i class="fas fa-venus nav-icon"></i> عطور نسائية</a></li>
+                <li><a href="#oud" data-target="oud" class="nav-link scroll-link"><i class="fas fa-smog nav-icon"></i> بخور وعود</a></li>
+                <li><a href="#contact" data-target="contact" class="nav-link scroll-link"><i class="fas fa-envelope nav-icon"></i> تواصل بنا</a></li>
+                <li><a href="admin.html" id="admin-nav-link" class="nav-link admin-link"><i class="fas fa-user-shield nav-icon"></i> لوحة الإدارة</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="search-container" id="search-container">
+                    <button id="search-toggle" class="icon-btn search-btn" title="بحث">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" width="20"
+                            height="20">
+                            <path
+                                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                        </svg>
+                    </button>
+                    <div class="search-box-wrapper" id="search-box-wrapper">
+                        <div class="search-input-inner">
+                            <input type="text" id="search-input" class="search-input" placeholder="ابحث عن منتج...">
+                            <button id="search-close" class="search-close-btn" title="إغلاق البحث">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div id="search-results" class="search-results hidden"></div>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="icon-btn" title="تغيير المظهر">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="currentColor" width="20"
+                        height="20">
+                        <path
+                            d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
+                    </svg>
+                </button>
+                <button id="cart-toggle" class="icon-btn cart-btn" title="السلة">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" width="20"
+                        height="20">
+                        <path
+                            d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
+                    </svg>
+                    <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-overlay" class="cart-overlay hidden"></div>
+    <aside id="cart-sidebar" class="cart-sidebar closed">
+        <div class="cart-header">
+            <h2>سلة المشتريات</h2>
+            <button id="close-cart" class="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be injected here by JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>الإجمالي:</span>
+                <span id="total-price" class="total-price">0 ريال</span>
+            </div>
+            <button id="checkout-btn" class="btn btn-primary checkout-btn" disabled>
+                <i class="fab fa-whatsapp"></i> إتمام الطلب
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Views Container -->
+    <main id="app-container">
+
+        <!-- ================= HOME VIEW ================= -->
+        <div id="home-view" class="view active-view">
+            <!-- Hero Section -->
+            <header id="home" class="hero">
+                <div class="hero-overlay"></div>
+                <div class="hero-content fade-in">
+                    <h2>أهلاً بك في عالم صُريم</h2>
+                    <p>متجر صُريم للعطور يقدم بدائل العطور العالمية الفاخرة، بالإضافة إلى البخور ودهن العود بأعلى جودة.
+                    </p>
+                    <button id="shop-now-btn" class="btn btn-primary">تصفح المنتجات</button>
+                </div>
+            </header>
+
+            <!-- Men's Perfumes Section -->
+            <section id="men" class="products-section">
+                <div class="section-title fade-in">
+                    <h2>العطور الرجالية</h2>
+                    <div class="underline"></div>
+                </div>
+                <div id="men-grid" class="products-grid">
+                    <!-- Injected by JS -->
+                </div>
+                <div id="men-action" class="section-action"></div>
+            </section>
+
+            <!-- Women's Perfumes Section -->
+            <section id="women" class="products-section bg-secondary">
+                <div class="section-title fade-in">
+                    <h2>العطور النسائية</h2>
+                    <div class="underline"></div>
+                </div>
+                <div id="women-grid" class="products-grid">
+                    <!-- Injected by JS -->
+                </div>
+                <div id="women-action" class="section-action"></div>
+            </section>
+
+            <!-- Incense & Oud Section -->
+            <section id="oud" class="products-section">
+                <div class="section-title fade-in">
+                    <h2>البخور والعود</h2>
+                    <div class="underline"></div>
+                </div>
+                <div id="oud-grid" class="products-grid">
+                    <!-- Injected by JS -->
+                </div>
+                <div id="oud-action" class="section-action"></div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section bg-primary fade-in">
+                <div class="contact-content">
+                    <h2>تواصل معنا</h2>
+                    <p>نحن هنا لخدمتك والإجابة على جميع استفساراتك.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/967783445511" target="_blank" class="social-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                        <a href="https://www.instagram.com/suraemye?igsh=Nmk2NDN5eDNycDFh" target="_blank"
+                            class="social-btn instagram">
+                            <i class="fab fa-instagram"></i> انستجرام
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PRODUCT DETAILS VIEW ================= -->
+        <div id="product-view" class="view hidden-view">
+            <div class="product-page-container">
+                <button id="back-to-home" class="back-btn"><i class="fas fa-arrow-right"></i> العودة للمتجر</button>
+
+                <div class="product-details-grid" id="product-details-content">
+                    <!-- Product details injected by JS -->
+                </div>
+
+                <!-- You May Also Like Section -->
+                <section class="related-products-section">
+                    <div class="section-title">
+                        <h2>قد يعجبك أيضاً</h2>
+                        <div class="underline"></div>
+                    </div>
+                    <div id="related-grid" class="products-grid"></div>
+                </section>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>صُريم <span>للعطور</span></h2>
+            </div>
+            <p>&copy; 2026 متجر صُريم للعطور. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker Registered:', reg.scope))
+                    .catch(err => console.error('Service Worker Registration Failed:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
