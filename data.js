@@ -37,7 +37,7 @@ const defaultProducts = [
         "enName": "Luxury Perfume",
         "price": 2000,
         "size": "50ml",
-        "img": "./555.jpg",
+        "img": "images/555.webp",
         "desc": "عطر رجالي يجمع بين عبق الشرق ولمسات الحداثة. مثالي للمناسبات الرسمية."
     },
     {
