@@ -2,21 +2,18 @@
 // SERVICE WORKER - SURAEM PERFUMES (OFFLINE PWA)
 // ==========================================
 
-const CACHE_NAME = 'suraem-v1';
+const CACHE_NAME = 'suraem-v2';
 
 // Static resources to pre-cache on SW installation
 const STATIC_ASSETS = [
     './',
     './index.html',
     './admin.html',
-    './add-product.html',
-    './edit-product.html',
+    './data.js',
     './style.css',
     './admin.css',
     './script.js',
     './admin.js',
-    './add-product.js',
-    './edit-product.js',
     './images/hero_bg.png',
     './images/mens_perfume.png',
     './images/womens_perfume.png',

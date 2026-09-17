@@ -1,37 +1,15 @@
 // ==========================================
-// 1. DEFAULT PRODUCTS DATA & LOCALSTORAGE INITIALIZATION
+// 1. DATA INITIALIZATION & LOCALSTORAGE MANAGEMENT
 // ==========================================
-const defaultProducts = [
-    // Men's Perfumes
-    { id: 'm1', category: 'men', name: 'عطر الفخامة', enName: 'Luxury Perfume', price: 15000, img: 'https://image.pollinations.ai/prompt/luxury%20black%20gold%20mens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'عطر رجالي يجمع بين عبق الشرق ولمسات الحداثة. مثالي للمناسبات الرسمية.' },
-    { id: 'm2', category: 'men', name: 'عطر الليل', enName: 'Night Perfume', price: 12000, img: 'https://image.pollinations.ai/prompt/dark%20blue%20night%20mens%20cologne%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'عطر هادئ وداكن مخصص للسهرات ليمنحك جاذبية لا تقاوم.' },
-    { id: 'm3', category: 'men', name: 'عطر الصحراء', enName: 'Desert Perfume', price: 18000, img: 'https://image.pollinations.ai/prompt/desert%20sand%20amber%20mens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'عطر مستوحى من رمال الصحراء الذهبية، يحتوي على نفحات من التوابل والأخشاب.' },
-    { id: 'm4', category: 'men', name: 'عطر الأصالة', enName: 'Authentic Perfume', price: 14500, img: 'https://image.pollinations.ai/prompt/silver%20metallic%20mens%20cologne%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'عطر ذو طابع كلاسيكي فريد لمن يبحث عن رائحة تدوم طويلاً.' },
-    { id: 'm5', category: 'men', name: 'عطر الغموض', enName: 'Mystery Perfume', price: 16000, img: 'https://image.pollinations.ai/prompt/green%20forest%20mens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'رائحة غامضة وجذابة تلفت الانتباه من اللحظة الأولى.' },
-    { id: 'm6', category: 'men', name: 'عطر السمو', enName: 'Elevate Perfume', price: 20000, img: 'https://image.pollinations.ai/prompt/royal%20crown%20mens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'لأصحاب الذوق الرفيع، عطر فاخر جداً يعكس شخصيتك القيادية.' },
-
-    // Women's Perfumes
-    { id: 'w1', category: 'women', name: 'عطر الأنوثة', enName: 'Femininity Perfume', price: 14000, img: 'https://image.pollinations.ai/prompt/elegant%20pink%20rose%20womens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'عطر ناعم جداً يحاكي رقة الأنثى ويعطي شعوراً بالانتعاش.' },
-    { id: 'w2', category: 'women', name: 'عطر الورد', enName: 'Rose Perfume', price: 13000, img: 'https://image.pollinations.ai/prompt/white%20jasmine%20womens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'مزيج رائع من أزهار الربيع والورود الطبيعية.' },
-    { id: 'w3', category: 'women', name: 'عطر الجمال', enName: 'Beauty Perfume', price: 16000, img: 'https://image.pollinations.ai/prompt/crystal%20diamond%20womens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'عطر قوي وثابت يعزز من حضورك في كل المناسبات.' },
-    { id: 'w4', category: 'women', name: 'عطر الرقة', enName: 'Delicate Perfume', price: 15500, img: 'https://image.pollinations.ai/prompt/purple%20lavender%20womens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'لمسة من الفانيليا والياسمين تجعل هذا العطر استثنائياً.' },
-    { id: 'w5', category: 'women', name: 'عطر السحر', enName: 'Magic Perfume', price: 17000, img: 'https://image.pollinations.ai/prompt/red%20ruby%20womens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'سحر خاص يخطف الأنفاس من الرشة الأولى.' },
-    { id: 'w6', category: 'women', name: 'عطر الربيع', enName: 'Spring Perfume', price: 14500, img: 'https://image.pollinations.ai/prompt/golden%20vanilla%20womens%20perfume%20bottle?width=400&height=500&nologo=1', size: '50ml', desc: 'عطر حيوي ومشرق يضفي طاقة إيجابية على يومك.' },
-
-    // Oud & Incense
-    { id: 'o1', category: 'oud', name: 'دهن عود ملكي', enName: 'Royal Oud Oil', price: 25000, img: 'https://image.pollinations.ai/prompt/arabic%20oud%20perfume%20bottle%20with%20incense%20smoke?width=400&height=500&nologo=1', size: 'وقية', desc: 'دهن عود صافي ومعتق لسنوات، رائحة فخمة تناسب كبار الشخصيات.' },
-    { id: 'o2', category: 'oud', name: 'بخور صُريم الخاص', enName: 'Suraem Special Bukhoor', price: 8000, img: 'https://image.pollinations.ai/prompt/royal%20amber%20oud%20perfume%20bottle?width=400&height=500&nologo=1', size: 'وقية', desc: 'مزيج سري من الأعشاب والعود المعطر، يملأ المكان برائحة طيبة تدوم طويلاً.' },
-    { id: 'o3', category: 'oud', name: 'خشب عود موري', enName: 'Mori Oud Wood', price: 30000, img: 'https://image.pollinations.ai/prompt/pure%20musk%20white%20oud%20perfume%20bottle?width=400&height=500&nologo=1', size: 'وقية', desc: 'خشب عود طبيعي ذو جودة عالية جداً، يزبد على الجمر ورائحته فواحة.' },
-    { id: 'o4', category: 'oud', name: 'دهن عود كمبودي', enName: 'Cambodian Oud Oil', price: 35000, img: 'https://image.pollinations.ai/prompt/saffron%20spicy%20oud%20perfume%20bottle?width=400&height=500&nologo=1', size: 'وقية', desc: 'من أندر أنواع دهن العود، يمتاز برائحة سويتية وبخورية فريدة.' },
-    { id: 'o5', category: 'oud', name: 'مبثوث عرايسي', enName: 'Bridal Mabthooth', price: 12000, img: 'https://image.pollinations.ai/prompt/dark%20wood%20oud%20perfume%20bottle?width=400&height=500&nologo=1', size: 'وقية', desc: 'مبثوث مميز خاص بالمناسبات السعيدة وحفلات الزفاف.' },
-    { id: 'o6', category: 'oud', name: 'عود مروكي محسن', enName: 'Maroki Oud Wood', price: 40000, img: 'https://image.pollinations.ai/prompt/premium%20bakhour%20incense%20burner?width=400&height=500&nologo=1', size: 'وقية', desc: 'عود مروكي محسن بجودة فاخرة، مثالي للاستخدام اليومي والمكاتب.' }
-];
-
-if (!localStorage.getItem('suraem_products')) {
+if (!localStorage.getItem('suraem_categories') && typeof defaultCategories !== 'undefined') {
+    localStorage.setItem('suraem_categories', JSON.stringify(defaultCategories));
+}
+if (!localStorage.getItem('suraem_products') && typeof defaultProducts !== 'undefined') {
     localStorage.setItem('suraem_products', JSON.stringify(defaultProducts));
 }
 
-let products = JSON.parse(localStorage.getItem('suraem_products')) || defaultProducts;
+let categoriesList = JSON.parse(localStorage.getItem('suraem_categories')) || (typeof defaultCategories !== 'undefined' ? defaultCategories : []);
+let products = JSON.parse(localStorage.getItem('suraem_products')) || (typeof defaultProducts !== 'undefined' ? defaultProducts : []);
 
 // ==========================================
 // 2. STATE MANAGEMENT
@@ -81,38 +59,149 @@ document.addEventListener('DOMContentLoaded', () => {
     setupIntersectionObserver();
 });
 
-// Listen for updates in LocalStorage (from admin.html / add-product / edit-product)
+// Listen for updates in LocalStorage
 window.addEventListener('storage', (e) => {
-    if (e.key === 'suraem_products') {
+    if (e.key === 'suraem_products' || e.key === 'suraem_categories') {
         reloadProductsFromStorage();
         renderAllProducts();
     }
 });
 
+window.handleProductImageError = function (imgEl, category, originalSrc) {
+    if (!imgEl) return;
+
+    let attempts = [];
+    try {
+        attempts = imgEl.dataset.imgAttempts ? JSON.parse(imgEl.dataset.imgAttempts) : [];
+    } catch (e) {
+        attempts = [];
+    }
+
+    const currentSrc = imgEl.src || '';
+    if (currentSrc && !attempts.includes(currentSrc)) {
+        attempts.push(currentSrc);
+    }
+    imgEl.dataset.imgAttempts = JSON.stringify(attempts);
+
+    const fallbackPlaceholder = category === 'women' ? 'images/womens_perfume.png' :
+        category === 'oud' ? 'images/oud_incense.png' :
+            'images/mens_perfume.png';
+
+    let rawPath = (imgEl.getAttribute('data-raw-src') || originalSrc || currentSrc || '').trim();
+    rawPath = rawPath.split('?')[0].split('#')[0];
+
+    let candidates = [];
+
+    if (rawPath && !rawPath.startsWith('http://') && !rawPath.startsWith('https://') && !rawPath.startsWith('data:')) {
+        let basePath = rawPath;
+        let ext = '';
+        const lastDot = rawPath.lastIndexOf('.');
+        if (lastDot > -1 && lastDot > rawPath.lastIndexOf('/')) {
+            basePath = rawPath.substring(0, lastDot);
+            ext = rawPath.substring(lastDot);
+        }
+
+        const extensionsToTry = ['.png', '.jpg', '.jpeg', '.webp', '.PNG', '.JPG'];
+
+        extensionsToTry.forEach(e => {
+            if (e.toLowerCase() !== ext.toLowerCase()) {
+                candidates.push(basePath + e);
+            }
+        });
+
+        if (!basePath.startsWith('images/')) {
+            const withImages = 'images/' + basePath;
+            candidates.push(withImages + (ext || '.png'));
+            extensionsToTry.forEach(e => {
+                candidates.push(withImages + e);
+            });
+        } else {
+            const withoutImages = basePath.replace(/^images\//, '');
+            candidates.push(withoutImages + (ext || '.png'));
+            extensionsToTry.forEach(e => {
+                candidates.push(withoutImages + e);
+            });
+        }
+    }
+
+    const nextCandidate = candidates.find(c => {
+        return !attempts.includes(c) && !attempts.some(a => a.endsWith(c));
+    });
+
+    if (nextCandidate) {
+        imgEl.src = nextCandidate;
+    } else {
+        imgEl.onerror = null;
+        imgEl.src = fallbackPlaceholder;
+    }
+};
+
 function reloadProductsFromStorage() {
-    products = JSON.parse(localStorage.getItem('suraem_products')) || defaultProducts;
+    let storedProducts = JSON.parse(localStorage.getItem('suraem_products'));
+
+    if (storedProducts && typeof defaultProducts !== 'undefined' && Array.isArray(defaultProducts)) {
+        const defaultMap = new Map(defaultProducts.map(dp => [dp.id, dp.img]));
+        let updated = false;
+        storedProducts = storedProducts.map(p => {
+            if (defaultMap.has(p.id)) {
+                const defaultImg = defaultMap.get(p.id);
+                if (defaultImg && p.img !== defaultImg) {
+                    updated = true;
+                    return { ...p, img: defaultImg };
+                }
+            }
+            return p;
+        });
+        if (updated) {
+            localStorage.setItem('suraem_products', JSON.stringify(storedProducts));
+        }
+        products = storedProducts;
+    } else {
+        products = storedProducts || (typeof defaultProducts !== 'undefined' ? defaultProducts : []);
+    }
+
+    categoriesList = JSON.parse(localStorage.getItem('suraem_categories')) || (typeof defaultCategories !== 'undefined' ? defaultCategories : []);
 }
 
 // ==========================================
 // 5. RENDER FUNCTIONS FOR MAIN STORE
 // ==========================================
-const expandedCategories = {
-    men: false,
-    women: false,
-    oud: false
-};
+const expandedCategories = {};
 
 function renderAllProducts() {
-    products = JSON.parse(localStorage.getItem('suraem_products')) || defaultProducts;
-    const categories = ['men', 'women', 'oud'];
+    reloadProductsFromStorage();
 
-    categories.forEach(cat => {
-        const gridEl = document.getElementById(`${cat}-grid`);
-        const actionEl = document.getElementById(`${cat}-action`);
+    categoriesList.forEach(catObj => {
+        const catKey = catObj.id;
+        let gridEl = document.getElementById(`${catKey}-grid`);
+        let actionEl = document.getElementById(`${catKey}-action`);
+
+        // If dynamic section does not exist in DOM yet, create it before contact section
+        if (!gridEl) {
+            const homeView = document.getElementById('home-view');
+            const contactSection = document.getElementById('contact');
+            if (homeView && contactSection) {
+                const newSection = document.createElement('section');
+                newSection.id = catKey;
+                newSection.className = 'products-section';
+                newSection.innerHTML = `
+                    <div class="section-title fade-in">
+                        <h2>${catObj.name}</h2>
+                        <div class="underline"></div>
+                    </div>
+                    <div id="${catKey}-grid" class="products-grid"></div>
+                    <div id="${catKey}-action" class="section-action"></div>
+                `;
+                homeView.insertBefore(newSection, contactSection);
+                gridEl = document.getElementById(`${catKey}-grid`);
+                actionEl = document.getElementById(`${catKey}-action`);
+            }
+        }
+
         if (!gridEl) return;
 
-        const catProducts = products.filter(p => p.category === cat);
-        const isExpanded = expandedCategories[cat] || false;
+        const catProducts = products.filter(p => p.category === catKey);
+        const isExpanded = expandedCategories[catKey] || false;
         const visibleProducts = isExpanded ? catProducts : catProducts.slice(0, 4);
 
         gridEl.innerHTML = visibleProducts.map(p => createProductCard(p)).join('');
@@ -121,13 +210,13 @@ function renderAllProducts() {
             if (catProducts.length > 4) {
                 if (!isExpanded) {
                     actionEl.innerHTML = `
-                        <button class="btn btn-show-more" onclick="toggleCategoryExpand('${cat}')">
+                        <button class="btn btn-show-more" onclick="toggleCategoryExpand('${catKey}')">
                             إظهار المزيد <i class="fas fa-chevron-down"></i>
                         </button>
                     `;
                 } else {
                     actionEl.innerHTML = `
-                        <button class="btn btn-show-more" onclick="toggleCategoryExpand('${cat}')">
+                        <button class="btn btn-show-more" onclick="toggleCategoryExpand('${catKey}')">
                             إخفاء بعض المنتجات <i class="fas fa-chevron-up"></i>
                         </button>
                     `;
@@ -147,14 +236,11 @@ window.toggleCategoryExpand = function (cat) {
 };
 
 function createProductCard(product) {
-    let placeholder = product.category === 'men' ? 'images/mens_perfume.png' :
-        product.category === 'women' ? 'images/womens_perfume.png' :
-            'images/oud_incense.png';
-
+    let safeImg = (product.img || '').replace(/'/g, "\\'");
     return `
         <div class="product-card fade-in" onclick="openProductPage('${product.id}')">
             <div class="product-img">
-                <img src="${product.img}" alt="${product.name}" onerror="this.onerror=null; this.src='${placeholder}';">
+                <img src="${product.img}" alt="${product.name}" onerror="handleProductImageError(this, '${product.category}', '${safeImg}');">
             </div>
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
@@ -172,13 +258,11 @@ function openProductPage(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
-    let placeholder = product.category === 'men' ? 'images/mens_perfume.png' :
-        product.category === 'women' ? 'images/womens_perfume.png' :
-            'images/oud_incense.png';
+    let safeImg = (product.img || '').replace(/'/g, "\\'");
 
     DOM.productPage.content.innerHTML = `
         <div class="product-gallery">
-            <img src="${product.img}" alt="${product.name}" onerror="this.onerror=null; this.src='${placeholder}';">
+            <img src="${product.img}" alt="${product.name}" onerror="handleProductImageError(this, '${product.category}', '${safeImg}');">
         </div>
         <div class="product-details-info">
             <h1>${product.name}</h1>
@@ -290,13 +374,12 @@ function updateCartUI() {
     cart.forEach((item, index) => {
         total += item.price * item.qty;
 
-        let fallbackSrc = 'images/mens_perfume.png';
-        if (item.id.startsWith('w')) fallbackSrc = 'images/womens_perfume.png';
-        if (item.id.startsWith('o')) fallbackSrc = 'images/oud_incense.png';
+        let itemCat = (item.id && item.id.startsWith('w')) ? 'women' : (item.id && item.id.startsWith('o')) ? 'oud' : 'men';
+        let safeItemImg = (item.img || '').replace(/'/g, "\\'");
 
         html += `
             <div class="cart-item">
-                <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="this.onerror=null; this.src='${fallbackSrc}';">
+                <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="handleProductImageError(this, '${itemCat}', '${safeItemImg}');">
                 <div class="cart-item-details">
                     <div class="cart-item-title">${item.name}</div>
                     ${item.size ? `<div class="cart-item-size">الحجم: ${item.size}</div>` : ''}
@@ -368,6 +451,28 @@ window.directWhatsAppOrder = function (productId) {
         window.open(whatsappUrl, '_blank');
     }, 800);
 };
+
+function checkoutCartWhatsApp() {
+    if (!cart || cart.length === 0) return;
+
+    let total = 0;
+    const itemsLines = cart.map((item, index) => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+        return `${index + 1} - ${item.name} - السعر : ${item.price} ريال - العدد : ${item.qty} - الإجمالي : ${itemTotal} ريال`;
+    }).join('\n');
+
+    const message = `السلام عليكم\n\nأرغب في إتمام شراء الطلبية التالية :\n\n${itemsLines}\n\nالإجمالي = ${total} ريال\n\nيرجى تزويدي بتفاصيل الدفع والشحن`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/967783445511?text=${encodedMessage}`;
+
+    if (DOM.loader) DOM.loader.classList.remove('hidden');
+    setTimeout(() => {
+        if (DOM.loader) DOM.loader.classList.add('hidden');
+        window.open(whatsappUrl, '_blank');
+    }, 800);
+}
 
 // ==========================================
 // 8. THEME & NAVIGATION SYSTEM
@@ -493,6 +598,12 @@ function setupEventListeners() {
     const closeCartBtn = document.getElementById('close-cart');
     if (closeCartBtn) closeCartBtn.addEventListener('click', () => toggleCart(false));
     if (DOM.cart.overlay) DOM.cart.overlay.addEventListener('click', () => toggleCart(false));
+
+    if (DOM.cart.checkoutBtn) {
+        DOM.cart.checkoutBtn.addEventListener('click', () => {
+            checkoutCartWhatsApp();
+        });
+    }
 
     const backToHomeBtn = document.getElementById('back-to-home');
     if (backToHomeBtn) backToHomeBtn.addEventListener('click', closeProductPage);
@@ -632,13 +743,10 @@ if (searchToggle && searchInput) {
         if (searchResults) {
             if (matchedProducts.length > 0) {
                 searchResults.innerHTML = matchedProducts.map(p => {
-                    let fallbackSrc = 'images/mens_perfume.png';
-                    if (p.category === 'women') fallbackSrc = 'images/womens_perfume.png';
-                    if (p.category === 'oud') fallbackSrc = 'images/oud_incense.png';
-
+                    let safePImg = (p.img || '').replace(/'/g, "\\'");
                     return `
                     <div class="search-item" onclick="selectSearchResult('${p.id}')">
-                        <img src="${p.img}" class="search-item-img" onerror="this.onerror=null; this.src='${fallbackSrc}';">
+                        <img src="${p.img}" class="search-item-img" onerror="handleProductImageError(this, '${p.category}', '${safePImg}');">
                         <div class="search-item-info">
                             <div class="search-item-name" style="font-weight: 600; font-size: 0.95rem;">${p.name}</div>
                             <div class="search-item-price" style="font-size: 0.85rem; color: #ffffff !important;">${p.price.toLocaleString()} ريال</div>
