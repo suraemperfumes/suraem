@@ -1,6 +1,6 @@
 // ==========================================
 // SURAEM PERFUMES - EXPORTED DATA FILE (data.js)
-// Generated on: 9/16/2026, 9:14:26 PM
+// Generated on: 9/17/2026, 2:13:44 PM
 // ==========================================
 
 const defaultCategories = [
@@ -37,7 +37,7 @@ const defaultProducts = [
         "enName": "Luxury Perfume",
         "price": 2000,
         "size": "50ml",
-        "img": "images/555.jpg",
+        "img": "./555.jpg",
         "desc": "عطر رجالي يجمع بين عبق الشرق ولمسات الحداثة. مثالي للمناسبات الرسمية."
     },
     {
@@ -219,5 +219,15 @@ const defaultProducts = [
         "size": "50ml",
         "img": "images/1786543263299.png",
         "desc": "عععععع"
+    },
+    {
+        "id": "p_1789643614462",
+        "category": "men",
+        "name": "ديور سوفاج",
+        "enName": "Dior Suavage",
+        "price": 6000,
+        "size": "50ml",
+        "img": "images/mens_perfume.png",
+        "desc": "تطابق عالي"
     }
 ];
